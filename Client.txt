@@ -1,0 +1,21 @@
+>ipython
+Python 3.7.6 (tags/v3.7.6:43364a7ae0, Dec 19 2019, 00:42:30) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.10.2 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: import socket
+
+In [2]: client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+
+In [3]: client_socket.connect(('127.0.0.1', 50000))
+
+In [4]: client_socket.sendall(b'Hello??')
+
+In [5]: client_socket.recv(64)
+Out[5]: b'Yes? Can you hear me now?!'
+
+In [6]: client_socket.sendall(b'Excellent!')
+
+In [7]: client_socket.close()
+
+In [8]:

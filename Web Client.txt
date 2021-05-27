@@ -1,0 +1,41 @@
+>ipython
+Python 3.7.6 (tags/v3.7.6:43364a7ae0, Dec 19 2019, 00:42:30) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.10.2 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: import socket
+
+In [2]: socket.getaddrinfo('info.cern.ch', 'http')
+Out[2]:
+[(<AddressFamily.AF_INET: 2>,
+  <SocketKind.SOCK_STREAM: 1>,
+  0,
+  '',
+  ('188.184.21.108', 80))]
+
+In [3]: client = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+
+In [4]: client
+Out[4]: <socket.socket fd=1408, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=6>
+
+In [5]: client.connect(('188.184.21.108', 80))
+
+In [6]: msg = "GET / http/1.1\r\n"
+
+In [7]: msg += "Host: info.cern.ch\r\n\r\n"
+
+In [8]: msg = msg.encode('utf8')
+
+In [9]: client.sendall(msg)
+
+In [10]: client.recv(1024)
+---------------------------------------------------------------------------
+ConnectionAbortedError                    Traceback (most recent call last)
+<ipython-input-10-7db82adcf868> in <module>
+----> 1 client.recv(1024)
+
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+
+In [11]: client.close()
+
+In [12]:
